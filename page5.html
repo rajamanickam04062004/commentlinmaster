@@ -1,0 +1,111 @@
+<center><h2><br>Utility and Debugging Commands<br></h2></center>
+<!--line start-->
+<h3>1.cls</h3>
+<p>Clears the Command Prompt screen</p>
+<div class="container">
+    <div class="animated-box">
+        <button onclick="copyText(this)" class="copy-button" title="Copy">Copy Code</button>
+        <p class="text">cls</p>
+    </div>
+</div>
+<!--line finish-->
+<h3>2.echo</h3>
+<p>Prints a message on the screen or writes text to a file</p>
+<div class="container">
+    <div class="animated-box">
+        <button onclick="copyText(this)" class="copy-button" title="Copy">Copy Code</button>
+        <p class="text">echo Hello World</p>
+    </div>
+</div>
+
+<h3>3.pause</h3>
+<p>Pauses the execution of a script or batch file</p>
+<div class="container">
+    <div class="animated-box">
+        <button onclick="copyText(this)" class="copy-button" title="Copy">Copy Code</button>
+        <p class="text">pause</p>
+    </div>
+</div>
+
+<h3>4.set</h3>
+<p>Displays, sets, or removes environment variables</p>
+<div class="container">
+    <div class="animated-box">
+        <button onclick="copyText(this)" class="copy-button" title="Copy">Copy Code</button>
+        <p class="text">set PATH</p>
+    </div>
+</div>
+
+<h3>5.fc</h3>
+<p>Compares two files and shows the differences</p>
+<div class="container">
+    <div class="animated-box">
+        <button onclick="copyText(this)" class="copy-button" title="Copy">Copy Code</button>
+        <p class="text">fc file1.txt file2.txt</p>
+    </div>
+</div>
+
+
+
+
+<style>
+/* Same CSS as before */
+.container {
+    margin: 20px;
+}
+h2 {
+    background-color: green;
+    padding: 10px;
+    color: white;
+}
+.animated-box {
+    position: relative;
+    display: inline-block;
+    padding: 10px;
+    background: rgb(223, 222, 222);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    animation: bounce 2s infinite;
+    width: 50%;
+}
+.copy-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 5px 10px;
+    font-size: 12px;
+    cursor: pointer;
+    background-color: rgb(223, 222, 222);
+    color: grey;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+.copy-button:hover {
+    background-color: white;
+    color: rgb(0, 0, 0);
+}
+</style>
+
+<script>
+function copyText(button) {
+    // Find the text element in the same container as the button
+    const text = button.parentElement.querySelector('.text').textContent;
+
+    // Create a temporary textarea to copy the text
+    const textarea = document.createElement('textarea');
+    textarea.value = text;
+    document.body.appendChild(textarea);
+    textarea.select();
+    document.execCommand('copy');
+    document.body.removeChild(textarea);
+
+    // Change the button text to "Copied!"
+    button.textContent = 'Copied!';
+    
+    // Reset button text back to "Copy" after a short delay
+    setTimeout(() => {
+        button.textContent = 'Copy Code';
+    }, 2000);
+}
+</script>

@@ -1,0 +1,137 @@
+<center><h2><br>File and Directory Management<br></h2></center>
+<!--line start-->
+<h3>1.dir</h3>
+<p>Lists all files and folders in the current directory.</p>
+<div class="container">
+    <div class="animated-box">
+        <button onclick="copyText(this)" class="copy-button" title="Copy">Copy Code</button>
+        <p class="text">dir</p>
+    </div>
+</div>
+<!--line finish-->
+<h3>2.cd</h3>
+<p>Moves between directories / Change Directory EX: Cd folderpath</p>
+<div class="container">
+    <div class="animated-box">
+        <button onclick="copyText(this)" class="copy-button" title="Copy">Copy Code</button>
+        <p class="text">cd C:\Windows</p>
+    </div>
+</div>
+
+<h3>3.cd..</h3>
+<p>Moves to the parent directory.</p>
+<div class="container">
+    <div class="animated-box">
+        <button onclick="copyText(this)" class="copy-button" title="Copy">Copy Code</button>
+        <p class="text">cd..</p>
+    </div>
+</div>
+
+<h3>4.mkdir</h3>
+<p>Creates a new folder.</p>
+<div class="container">
+    <div class="animated-box">
+        <button onclick="copyText(this)" class="copy-button" title="Copy">Copy Code</button>
+        <p class="text">mkdir Projects</p>
+    </div>
+</div>
+
+<h3>5.rmdir</h3>
+<p>Deletes a folder (only if it’s empty)</p>
+<div class="container">
+    <div class="animated-box">
+        <button onclick="copyText(this)" class="copy-button" title="Copy">Copy Code</button>
+        <p class="text">rmdir OldFolder</p>
+    </div>
+</div>
+
+<h3>6.del</h3>
+<p>Deletes files</p>
+<div class="container">
+    <div class="animated-box">
+        <button onclick="copyText(this)" class="copy-button" title="Copy">Copy Code</button>
+        <p class="text">Deletes file.txt</p>
+    </div>
+</div>
+
+<h3>7.copy</h3>
+<p>Copies files to another location</p>
+<div class="container">
+    <div class="animated-box">
+        <button onclick="copyText(this)" class="copy-button" title="Copy">Copy Code</button>
+        <p class="text">Copies file.txt to D:\Backup</p>
+    </div>
+</div>
+
+<h3>8.move</h3>
+<p>Moves files to a new location</p>
+<div class="container">
+    <div class="animated-box">
+        <button onclick="copyText(this)" class="copy-button" title="Copy">Copy Code</button>
+        <p class="text">move file.txt D:\Documents</p>
+    </div>
+</div>
+
+
+
+<style>
+/* Same CSS as before */
+.container {
+    margin: 20px;
+}
+h2 {
+    background-color: green;
+    padding: 10px;
+    color: white;
+}
+.animated-box {
+    position: relative;
+    display: inline-block;
+    padding: 10px;
+    background: rgb(223, 222, 222);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    animation: bounce 2s infinite;
+    width: 50%;
+}
+.copy-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 5px 10px;
+    font-size: 12px;
+    cursor: pointer;
+    background-color: rgb(223, 222, 222);
+    color: grey;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+.copy-button:hover {
+    background-color: white;
+    color: rgb(0, 0, 0);
+}
+</style>
+
+<script>
+function copyText(button) {
+    // Find the text element in the same container as the button
+    const text = button.parentElement.querySelector('.text').textContent;
+
+    // Create a temporary textarea to copy the text
+    const textarea = document.createElement('textarea');
+    textarea.value = text;
+    document.body.appendChild(textarea);
+    textarea.select();
+    document.execCommand('copy');
+    document.body.removeChild(textarea);
+
+    // Change the button text to "Copied!"
+    button.textContent = 'Copied!';
+    
+    // Reset button text back to "Copy" after a short delay
+    setTimeout(() => {
+        button.textContent = 'Copy Code';
+    }, 2000);
+}
+</script>

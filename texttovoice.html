@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text to Voice Converter</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Text to Voice Converter</h1>
+        <select id="voiceSelect"></select>
+        <button onclick="defaultTextToVoice()">Convert Default Paragraph to Voice</button>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
+<style>
+    body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f4f4f4;
+}
+
+.container {
+    text-align: center;
+    background: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #218838;
+}
+
+</style>
+<script>
+    let voices = [];
+const defaultParagraph = "This is the default paragraph that will be converted to voice when the button is clicked.";
+
+function populateVoiceList() {
+    voices = window.speechSynthesis.getVoices();
+    const voiceSelect = document.getElementById('voiceSelect');
+    voiceSelect.innerHTML = '';
+    voices.forEach((voice, i) => {
+        const option = document.createElement('option');
+        option.textContent = `${voice.name} (${voice.lang})`;
+        option.value = i;
+        voiceSelect.appendChild(option);
+    });
+}
+
+populateVoiceList();
+if (speechSynthesis.onvoiceschanged !== undefined) {
+    speechSynthesis.onvoiceschanged = populateVoiceList;
+}
+
+function defaultTextToVoice() {
+    const voiceSelect = document.getElementById('voiceSelect');
+    const selectedVoiceIndex = voiceSelect.value;
+    const speech = new SpeechSynthesisUtterance();
+    speech.text = defaultParagraph;
+    speech.voice = voices[selectedVoiceIndex];
+    speech.pitch = 1; // You can set pitch and rate if needed
+    speech.rate = 1;
+    window.speechSynthesis.speak(speech);
+}
+
+</script>
